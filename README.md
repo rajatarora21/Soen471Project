@@ -20,5 +20,5 @@ The HR analytics dataset provided from kaggle contains both a training and test 
 
 This is the distribution of missing unknown instances among each feature.
 ![Image of Missing info]
-(/Graph:Plot/MissingInfo.png)
+(MissingInfo.png)
 
