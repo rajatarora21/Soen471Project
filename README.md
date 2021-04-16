@@ -19,5 +19,6 @@ Cleaning:
 The HR analytics dataset provided from kaggle contains both a training and test set. The training set contains 19158 entries along with 14 columns, 13 of which are the features and lastly the target. One of the issues that arised was that this dataset contains a significant amount of missing data instances, 20733 in the training set and 2204 belonging to the test set. 
 
 This is the distribution of missing unknown instances among each feature.
-./MissingInfo.png
+![Image of Missing info]
+(/Graph:Plot/MissingInfo.png)
 
