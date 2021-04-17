@@ -14,10 +14,50 @@ The data analysis and classification on HR Analytics dataset requires multiple t
 
 # Results
 
-Cleaning:
+### Cleaning:
 	
-The HR analytics dataset provided from kaggle contains both a training and test set. The training set contains 19158 entries along with 14 columns, 13 of which are the features and lastly the target. One of the issues that arised was that this dataset contains a significant amount of missing data instances, 20733 in the training set and 2204 belonging to the test set. 
+The HR analytics dataset provided from kaggle contains both a training and test set. The training set contains 19158 entries along with 14 columns, 13 of which are the features and lastly the target. After analyzing the data we noticed that it contains a significant amount of missing data instances, 20733 in the training set and 2204 belonging to the test set.
 
 This is the distribution of missing unknown instances among each feature.
-![](Graph:Plot/MissingInfo.png)
+
+![MissingInfo](https://user-images.githubusercontent.com/47232584/115093868-a9e72b00-9ee9-11eb-9397-b3fe84d7b55f.png)
+
+In order to prevent biased estimates we decided to drop columns company_size and company_type from the features list since the percentage of missing values in these columns is greater than 30%.
+
+![Screen Shot 2021-04-16 at 7 49 20 PM](https://user-images.githubusercontent.com/47232584/115094810-e1a3a200-9eec-11eb-8dde-2a1daa6b91ff.png)
+
+
+
+### Data Preprocessing:
+
+To handle the remaining missing values the technique we decided to use is called imputing with most frequent values. Essentially, what it does is replaces the missing value with the mean or mode within that column. This approach also works with categorical data as it will just assign missing values the most frequent category that occurs in the specific column.
+
+![Screen Shot 2021-04-16 at 8 56 08 PM](https://user-images.githubusercontent.com/47232584/115097105-40214e00-9ef6-11eb-8891-75651605dcf9.png)
+
+### SMOTE
+
+Another issue we came across is that the target class is imbalanced. This can be analyzed with the following graph where 0 - are data scientists not looking for a job change and 1 - are data scientists looking for job change.
+
+![Screen Shot 2021-04-16 at 9 02 43 PM](https://user-images.githubusercontent.com/47232584/115097273-22081d80-9ef7-11eb-83bd-c81d35b0f5ca.png)
+
+A problem with imbalanced classification is that there are too few examples of the minority class for a model to effectively learn the decision boundary. Smote is the techique used in our project to rectify this problem. It is a technique used to oversample the target values in the minority class. This is achieved by selecting a minory class instance at random, then finds its k-nearest neighbour and with these two values its able to create a new similar instance. The downfall to this algorithm is that the target values in the majority class are overlooked. Here is the class target after upsampling.
+
+![Screen Shot 2021-04-16 at 9 02 50 PM](https://user-images.githubusercontent.com/47232584/115097393-f46fa400-9ef7-11eb-803b-35177fb7f49e.png)
+
+### Classification algorithms
+
+The classification models used in this project are Decision Tree's with and without Hyperparameter tuning and Random Forest. Pythons function GridSearchCV was used to find the most optimal Decision tree hyperparamters. GridSearch works by accepting a list of user defined parameters, then it tries all the combination with each value passed and then returns the ones that achieve the best performance. Here we can see the difference in performance between both Decision Tree models.
+
+<img width="479" alt="Screen Shot 2021-04-16 at 9 24 55 PM" src="https://user-images.githubusercontent.com/47232584/115097808-5204f000-9efa-11eb-9d8a-0be969418523.png">
+<img width="496" alt="Screen Shot 2021-04-16 at 9 25 07 PM" src="https://user-images.githubusercontent.com/47232584/115097820-5f21df00-9efa-11eb-93ca-37635e72db9c.png">
+
+The decision tree with optimal parameters was able to increase the amount of correct classifications. Therefore resulting in better evaluation metrics.
+
+Lastly, our random forest classifier achieved the best results. Random forest classifiers are known to achieve a better accuracy score with respect to other classification models. It works by taking an average of prediction outcomes from n number of decision trees. Here are the metrics of our model.
+
+![Screen Shot 2021-04-16 at 9 54 09 PM](https://user-images.githubusercontent.com/47232584/115098488-529f8580-9efe-11eb-969c-32e7d1eb3b96.png)
+
+
+
+
 
